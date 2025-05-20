@@ -22,6 +22,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin: 10px;
     }
 
     .btn:hover {
@@ -32,47 +33,39 @@
 <body>
 
   <h1>Track Clicks with Firebase</h1>
-  <button id="signup_button" class="btn">Sign Up</button>
-    <button id="signup_button2" class="btn">Sign Up</button>
+  <button id="signup_button" class="btn">Sign Up 1</button>
+  <button id="signup_button2" class="btn">Sign Up 2</button>
 
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
+    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-analytics.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAD69rtBwPZfzTGi_TDvky6wnflw9bBIxg",
-    authDomain: "clicksample-ec2c6.firebaseapp.com",
-    projectId: "clicksample-ec2c6",
-    storageBucket: "clicksample-ec2c6.firebasestorage.app",
-    messagingSenderId: "603343923123",
-    appId: "1:603343923123:web:eef81eaeb5dd367911cdc6",
-    measurementId: "G-26TE0NM69V"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyAD69rtBwPZfzTGi_TDvky6wnflw9bBIxg",
+      authDomain: "clicksample-ec2c6.firebaseapp.com",
+      projectId: "clicksample-ec2c6",
+      storageBucket: "clicksample-ec2c6.appspot.com",
+      messagingSenderId: "603343923123",
+      appId: "1:603343923123:web:eef81eaeb5dd367911cdc6",
+      measurementId: "G-26TE0NM69V"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-    
-        // ✅ Step 2: Track button click
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
     document.getElementById("signup_button").addEventListener("click", () => {
-      analytics.logEvent("button_click", {
+      logEvent(analytics, "button_click", {
         button_name: "signup_button"
       });
-      alert("Click event logged to Firebase Analytics!");
+      alert("Click event logged to Firebase Analytics (Button 1)!");
     });
-    
-        document.getElementById("signup_button2").addEventListener("click", () => {
-      analytics.logEvent("button_click", {
+
+    document.getElementById("signup_button2").addEventListener("click", () => {
+      logEvent(analytics, "button_click", {
         button_name: "signup_button2"
       });
-      alert("Click event logged to Firebase Analytics!");
+      alert("Click event logged to Firebase Analytics (Button 2)!");
     });
   </script>
 </body>
 </html>
-
