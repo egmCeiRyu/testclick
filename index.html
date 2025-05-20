@@ -56,7 +56,15 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-</script>
+    
+        // ✅ Step 2: Track button click
+    document.getElementById("signup_button").addEventListener("click", () => {
+      analytics.logEvent("button_click", {
+        button_name: "signup_button"
+      });
+      alert("Click event logged to Firebase Analytics!");
+    });
+  </script>
 </body>
 </html>
 
